@@ -1,12 +1,18 @@
-import { useState } from 'react'
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./routes";
+import Navbar from "./components/Navbar";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-    </>
-  )
-}
+    <BrowserRouter>
+      <div className="min-h-screen bg-slate-50 text-slate-800 font-sans p-6 flex flex-col">
+        
+        <Navbar />
 
-export default App
+        <AppRoutes />
+
+      </div>
+    </BrowserRouter>
+  );
+}
