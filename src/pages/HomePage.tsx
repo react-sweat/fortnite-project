@@ -1,6 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { Sword, Search, BarChart3 } from "lucide-react";
+import { Sword, Search, BarChart3, ShoppingBag, Map, Newspaper } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -22,6 +21,30 @@ export default function HomePage() {
         >
           <Search className="w-4 h-4" />
           Look Up Player Stats
+        </Link>
+
+        <Link
+          to="/shop"
+          className="bg-purple-600 text-white px-4 py-3 rounded font-bold flex items-center justify-center gap-2 hover:bg-purple-700 transition-colors"
+        >
+          <ShoppingBag className="w-4 h-4" />
+          Browse Item Shop
+        </Link>
+
+        <Link
+          to="/map"
+          className="bg-green-600 text-white px-4 py-3 rounded font-bold flex items-center justify-center gap-2 hover:bg-green-700 transition-colors"
+        >
+          <Map className="w-4 h-4" />
+          View Map & Distance Tool
+        </Link>
+
+        <Link
+          to="/news"
+          className="bg-orange-600 text-white px-4 py-3 rounded font-bold flex items-center justify-center gap-2 hover:bg-orange-700 transition-colors"
+        >
+          <Newspaper className="w-4 h-4" />
+          Browse Latest News
         </Link>
 
         <Link

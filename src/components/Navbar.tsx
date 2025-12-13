@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
@@ -25,6 +24,33 @@ export default function Navbar() {
         }
       >
         Player Stats
+      </NavLink>
+
+      <NavLink
+        to="/shop"
+        className={({ isActive }) =>
+          isActive ? `${linkClass} ${activeClass}` : linkClass
+        }
+      >
+        Shop
+      </NavLink>
+
+      <NavLink
+        to="/map"
+        className={({ isActive }) =>
+          isActive ? `${linkClass} ${activeClass}` : linkClass
+        }
+      >
+        Map
+      </NavLink>
+
+      <NavLink
+        to="/news"
+        className={({ isActive }) =>
+          isActive ? `${linkClass} ${activeClass}` : linkClass
+        }
+      >
+        News
       </NavLink>
 
       <NavLink
