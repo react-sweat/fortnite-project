@@ -114,7 +114,7 @@ export default function ChatWidget() {
         }`}
       >
         {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
-      </button>
+      </button>.
     </div>
   )
 }
