@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
 import { Sword, Search, BarChart3, ShoppingBag, Map, Newspaper } from "lucide-react";
+import logo from "../assets/logo.png";
 
 export default function HomePage() {
   return (
     <div className="flex flex-col items-center text-center p-4">
       <div className="mb-6">
 
-        <h1 className="text-2xl font-bold mb-2">
-          Fortnite Platform
-        </h1>
+        <img src={logo} alt="Fortnite Platform" className="mx-auto block h-12 w-auto mb-2" />
         <p className="text-gray-600 max-w-md mb-8">
           Check Fortnite player stats, progress, Battle Pass levels and more.
         </p>
