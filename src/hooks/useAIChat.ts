@@ -13,6 +13,7 @@ interface UseAIChatReturn {
     error: string | null;
     sendMessage: (content: string) => Promise<void>;
     clearMessages: () => void;
+    formatMarkdown: (text: string) => string;
 }
 
 const SYSTEM_PROMPT = `
@@ -35,9 +36,62 @@ If you receive stats JSON, analyze it and answer the user's question.
 STYLE GUIDELINES:
 - Do NOT explain your math or formulas. Just state the probability or result.
 - Be concise and friendly.
-- Do NOT use Markdown formatting (no bold, no tables, no lists). Use plain text only.
-- Use simple spacing or dashes for lists if needed.
+- Use Markdown formatting for better readability:
+  - Use **bold** for emphasis
+  - Use \`code\` for technical terms
+  - Use bullet points (- item) for lists
+  - Use ### for section headers
+  - Use tables when comparing data
+  - Use > for important notes or tips
 `;
+
+const formatMarkdown = (text: string): string => {
+    let formatted = text;
+
+    formatted = formatted.replace(/^### (.+)$/gm, '<h3 class="text-lg font-bold mt-4 mb-2">$1</h3>');
+    formatted = formatted.replace(/^## (.+)$/gm, '<h2 class="text-xl font-bold mt-4 mb-2">$1</h2>');
+    formatted = formatted.replace(/^# (.+)$/gm, '<h1 class="text-2xl font-bold mt-4 mb-2">$1</h1>');
+
+    formatted = formatted.replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold">$1</strong>');
+    formatted = formatted.replace(/\*(.+?)\*/g, '<em class="italic">$1</em>');
+    formatted = formatted.replace(/__(.+?)__/g, '<strong class="font-bold">$1</strong>');
+    formatted = formatted.replace(/_(.+?)_/g, '<em class="italic">$1</em>');
+
+    formatted = formatted.replace(/`([^`]+)`/g, '<code class="bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">$1</code>');
+
+    formatted = formatted.replace(/```(\w+)?\n([\s\S]*?)```/g, 
+        '<pre class="bg-gray-800 p-3 rounded-lg my-2 overflow-x-auto"><code class="text-sm font-mono">$2</code></pre>');
+
+    formatted = formatted.replace(/^> (.+)$/gm, 
+        '<blockquote class="border-l-4 border-blue-500 pl-4 py-1 my-2 bg-gray-800/50 rounded-r">$1</blockquote>');
+
+    formatted = formatted.replace(/^\- (.+)$/gm, '<li class="ml-4 list-disc">$1</li>');
+    formatted = formatted.replace(/^\* (.+)$/gm, '<li class="ml-4 list-disc">$1</li>');
+    formatted = formatted.replace(/^\d+\. (.+)$/gm, '<li class="ml-4 list-decimal">$1</li>');
+
+    formatted = formatted.replace(/(<li[^>]*>.*<\/li>\n?)+/g, (match) => {
+        if (match.includes('list-decimal')) {
+            return `<ol class="my-2 space-y-1">${match}</ol>`;
+        }
+        return `<ul class="my-2 space-y-1">${match}</ul>`;
+    });
+
+    formatted = formatted.replace(/\[([^\]]+)\]\(([^)]+)\)/g, 
+        '<a href="$2" class="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">$1</a>');
+
+    formatted = formatted.replace(/^---$/gm, '<hr class="my-4 border-gray-600">');
+
+    formatted = formatted.replace(/\n\n/g, '</p><p class="my-2">');
+    formatted = formatted.replace(/\n/g, '<br>');
+
+    formatted = `<p class="my-2">${formatted}</p>`;
+
+    formatted = formatted.replace(/<p class="my-2"><(h[1-3]|blockquote|pre|ul|ol|hr)/g, '<$1');
+    formatted = formatted.replace(/<\/(h[1-3]|blockquote|pre|ul|ol)><\/p>/g, '</$1>');
+    formatted = formatted.replace(/<hr[^>]*><\/p>/g, '<hr class="my-4 border-gray-600">');
+
+    return formatted;
+};
 
 const fetchPlayerStats = async (username: string) => {
     try {
@@ -161,5 +215,6 @@ export function useAIChat(): UseAIChatReturn {
         error,
         sendMessage,
         clearMessages,
+        formatMarkdown,
     };
 }
