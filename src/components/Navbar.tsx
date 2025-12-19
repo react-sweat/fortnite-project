@@ -53,14 +53,6 @@ export default function Navbar() {
         News
       </NavLink>
 
-      <NavLink
-        to="/placeholder"
-        className={({ isActive }) =>
-          isActive ? `${linkClass} ${activeClass}` : linkClass
-        }
-      >
-        Placeholder
-      </NavLink>
     </nav>
   );
 }

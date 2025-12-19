@@ -4,7 +4,6 @@ import PlayerSearch from "./pages/PlayerSearch";
 import ShopPage from "./pages/ShopPage";
 import MapPage from "./pages/MapPage";
 import NewsPage from "./pages/NewsPage";
-import Placeholder from "./pages/Placeholder";
 
 export default function AppRoutes() {
   return (
@@ -14,7 +13,6 @@ export default function AppRoutes() {
       <Route path="/shop" element={<ShopPage />} />
       <Route path="/map" element={<MapPage />} />
       <Route path="/news" element={<NewsPage />} />
-      <Route path="/placeholder" element={<Placeholder />} />
     </Routes>
   );
 }

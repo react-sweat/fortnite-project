@@ -45,14 +45,6 @@ export default function HomePage() {
           <Newspaper className="w-4 h-4" />
           Browse Latest News
         </Link>
-
-        <Link
-          to="/placeholder"
-          className="border border-gray-300 text-gray-800 px-4 py-3 rounded font-bold flex items-center justify-center gap-2"
-        >
-          <BarChart3 className="w-4 h-4" />
-          Placeholder
-        </Link>
       </div>
     </div>
   );
