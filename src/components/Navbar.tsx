@@ -53,6 +53,15 @@ export default function Navbar() {
         News
       </NavLink>
 
+      <NavLink
+        to="/charts"
+        className={({ isActive }) =>
+          isActive ? `${linkClass} ${activeClass}` : linkClass
+        }
+      >
+        Chart Builder
+      </NavLink>
+
     </nav>
   );
 }

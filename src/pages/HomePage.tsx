@@ -38,12 +38,23 @@ export default function HomePage() {
           View Map & Distance Tool
         </Link>
 
+
+
+
         <Link
           to="/news"
-          className="bg-orange-600 text-white px-4 py-3 rounded font-bold flex items-center justify-center gap-2 hover:bg-orange-700 transition-colors"
+          className="bg-blue-400 text-white px-4 py-3 rounded font-bold flex items-center justify-center gap-2 hover:bg-blue-500 transition-colors"
         >
           <Newspaper className="w-4 h-4" />
           Browse Latest News
+        </Link>
+
+        <Link
+          to="/charts"
+          className="bg-pink-600 text-white px-4 py-3 rounded font-bold flex items-center justify-center gap-2 hover:bg-pink-700 transition-colors"
+        >
+          <BarChart3 className="w-4 h-4" />
+          Create Custom Charts
         </Link>
       </div>
     </div>
