@@ -1,6 +1,6 @@
-import type { ChartDataPoint, FortniteCategory, ChartType } from '../types/chart.types';
+import type { ChartDataPoint, FortniteCategory } from '../types/chart.types';
 
-export const generateDefaultData = (category: FortniteCategory, type: ChartType): ChartDataPoint[] => {
+export const generateDefaultData = (category: FortniteCategory): ChartDataPoint[] => {
   const defaultData: Record<FortniteCategory, ChartDataPoint[]> = {
     performance: [
       { label: 'K/D Ratio', value: 2.1, color: '#ef4444' },

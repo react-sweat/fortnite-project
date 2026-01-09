@@ -52,7 +52,7 @@ const ChartPreview: React.FC<Props> = ({ config }) => {
           font: {
             family: "'Inter', sans-serif",
             size: 18,
-            weight: 'bold',
+            weight: 'bold' as const,
           },
           padding: {
             top: 20,
@@ -91,8 +91,8 @@ const ChartPreview: React.FC<Props> = ({ config }) => {
       } : {},
       animation: config.animation ? {
         duration: 1000,
-        easing: 'easeInOutQuart',
-      } : false,
+        easing: 'easeInOutQuart' as const,
+      } : (false as const),
     };
   }, [config]);
 
