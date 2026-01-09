@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Sword, Search, BarChart3, ShoppingBag, Map, Newspaper } from "lucide-react";
+import { Search, BarChart3, ShoppingBag, Map, Newspaper } from "lucide-react";
 import logo from "../assets/logo.png";
 
 export default function HomePage() {
