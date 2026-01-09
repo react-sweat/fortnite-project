@@ -50,18 +50,18 @@ export default function ShopPage() {
     });
 
     return (
-        <div className="container mx-auto px-4">
-            <h1 className="text-3xl font-bold mb-6 text-center">Item Shop</h1>
-            <p className="text-center text-gray-500 mb-8">
+        <div className="container mx-auto px-2 sm:px-4 md:px-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-center">Item Shop</h1>
+            <p className="text-center text-gray-500 mb-6 sm:mb-8 text-sm sm:text-base">
                 Date: {new Date(data.date).toLocaleDateString()}
             </p>
 
             {sortedSectionNames.map((sectionName) => (
-                <div key={sectionName} className="mb-10">
-                    <h2 className="text-2xl font-semibold mb-4 border-b pb-2">
+                <div key={sectionName} className="mb-6 sm:mb-8 md:mb-10">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3 sm:mb-4 border-b pb-2">
                         {sectionName}
                     </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
                         {sections[sectionName].map((entry) => {
                             const item = entry.brItems?.[0];
                             const name = entry.bundle?.name || item?.name || entry.devName;
@@ -95,11 +95,11 @@ export default function ShopPage() {
                                             </div>
                                         )}
                                     </div>
-                                    <div className="p-4 flex flex-col flex-grow">
-                                        <h3 className="font-bold text-lg mb-1 truncate" title={name}>
+                                    <div className="p-3 sm:p-4 flex flex-col flex-grow">
+                                        <h3 className="font-bold text-base sm:text-lg mb-1 truncate" title={name}>
                                             {name}
                                         </h3>
-                                        <p className="text-sm text-gray-500 mb-2 line-clamp-2">
+                                        <p className="text-xs sm:text-sm text-gray-500 mb-2 line-clamp-2">
                                             {entry.bundle?.info || item?.description || item?.type.displayValue}
                                         </p>
                                         <div className="mt-auto flex items-center justify-between">
@@ -107,9 +107,9 @@ export default function ShopPage() {
                                                 <img
                                                     src={data.vbuckIcon}
                                                     alt="V-Bucks"
-                                                    className="w-5 h-5"
+                                                    className="w-4 h-4 sm:w-5 sm:h-5"
                                                 />
-                                                <span className="font-bold text-slate-800">
+                                                <span className="font-bold text-slate-800 text-sm sm:text-base">
                                                     {entry.finalPrice}
                                                 </span>
                                                 {entry.finalPrice < entry.regularPrice && (

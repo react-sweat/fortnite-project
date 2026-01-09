@@ -116,21 +116,22 @@ const ChartPreview: React.FC<Props> = ({ config }) => {
 
   return (
     <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-      <div className="px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
         <div>
-          <h2 className="text-xl font-bold text-gray-900">Live Preview</h2>
-          <p className="text-sm text-gray-500">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900">Live Preview</h2>
+          <p className="text-xs sm:text-sm text-gray-500">
             Real-time chart visualization
           </p>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 w-full sm:w-auto">
           <button
             onClick={handleDownloadImage}
-            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:opacity-90 transition-opacity"
+            className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:opacity-90 transition-opacity text-sm"
           >
-            <Download size={16} />
-            Save as PNG
+            <Download size={14} className="sm:w-4 sm:h-4" />
+            <span className="hidden sm:inline">Save as PNG</span>
+            <span className="sm:hidden">Save</span>
           </button>
 
           <button
@@ -138,13 +139,13 @@ const ChartPreview: React.FC<Props> = ({ config }) => {
             className="p-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors"
             title="Fullscreen"
           >
-            <Maximize2 size={16} />
+            <Maximize2 size={14} className="sm:w-4 sm:h-4" />
           </button>
         </div>
       </div>
 
-      <div className="p-6">
-        <div className="relative h-[400px] bg-white rounded-xl border border-gray-100 p-4 shadow-inner">
+      <div className="p-3 sm:p-4 md:p-6">
+        <div className="relative h-[300px] sm:h-[350px] md:h-[400px] bg-white rounded-xl border border-gray-100 p-2 sm:p-4 shadow-inner">
           <Chart
             ref={chartRef}
             type={config.type}
@@ -155,13 +156,13 @@ const ChartPreview: React.FC<Props> = ({ config }) => {
         </div>
       </div>
 
-      <div className="px-6 py-4 bg-gray-50 border-t border-gray-100">
-        <div className="flex items-start gap-3">
-          <div className="p-2 bg-blue-100 rounded-lg">
-            <span className="text-blue-600">💡</span>
+      <div className="px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 border-t border-gray-100">
+        <div className="flex items-start gap-2 sm:gap-3">
+          <div className="p-1.5 sm:p-2 bg-blue-100 rounded-lg">
+            <span className="text-blue-600 text-sm sm:text-base">💡</span>
           </div>
           <div>
-            <p className="text-sm text-gray-700">
+            <p className="text-xs sm:text-sm text-gray-700">
               <span className="font-semibold">Tip:</span> {getTipForChartType(config.type)}
             </p>
             <p className="text-xs text-gray-500 mt-1">

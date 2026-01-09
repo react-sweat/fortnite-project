@@ -102,26 +102,26 @@ export default function MapPage() {
     const distance = calculateDistance();
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-8 text-center">Fortnite Map</h1>
+        <div className="container mx-auto px-2 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8 text-center">Fortnite Map</h1>
 
-            <div className="max-w-4xl mx-auto mb-4">
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <div className="flex items-center justify-between">
-                        <div className="flex-1">
-                            <h2 className="text-lg font-semibold text-blue-900 mb-2">Distance Calculator</h2>
-                            <p className="text-sm text-blue-700">
+            <div className="max-w-4xl mx-auto mb-3 sm:mb-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+                        <div className="flex-1 w-full sm:w-auto">
+                            <h2 className="text-base sm:text-lg font-semibold text-blue-900 mb-1 sm:mb-2">Distance Calculator</h2>
+                            <p className="text-xs sm:text-sm text-blue-700">
                                 {!point1 && "Click on the map to set your first point"}
                                 {point1 && !point2 && "Click on the map to set your second point"}
                                 {point1 && point2 && distance && (
-                                    <span className="text-xl font-bold">Distance: {distance.toLocaleString()} meters</span>
+                                    <span className="text-lg sm:text-xl font-bold">Distance: {distance.toLocaleString()} meters</span>
                                 )}
                             </p>
                         </div>
                         {(point1 || point2) && (
                             <button
                                 onClick={clearPoints}
-                                className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
+                                className="px-3 sm:px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors text-sm sm:text-base w-full sm:w-auto"
                             >
                                 Clear
                             </button>
@@ -176,8 +176,8 @@ export default function MapPage() {
                     </svg>
 
                     {coordinates && (
-                        <div className="absolute top-4 left-4 bg-black bg-opacity-75 text-white px-4 py-2 rounded-lg font-mono text-sm pointer-events-none">
-                            <div className="flex gap-4">
+                        <div className="absolute top-2 sm:top-4 left-2 sm:left-4 bg-black bg-opacity-75 text-white px-2 sm:px-4 py-1 sm:py-2 rounded-lg font-mono text-xs sm:text-sm pointer-events-none">
+                            <div className="flex gap-2 sm:gap-4">
                                 <span>X: {coordinates.x}</span>
                                 <span>Y: {coordinates.y}</span>
                             </div>

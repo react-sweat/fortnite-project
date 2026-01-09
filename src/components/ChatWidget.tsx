@@ -26,9 +26,9 @@ export default function ChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end">
       {isOpen && (
-        <div className="mb-4 w-80 md:w-96 h-96 bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
+        <div className="mb-4 w-[calc(100vw-2rem)] sm:w-80 md:w-96 h-[calc(100vh-8rem)] sm:h-96 bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
           <div className="bg-slate-900 text-white p-4 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
@@ -109,12 +109,13 @@ export default function ChatWidget() {
 
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`p-4 rounded-full shadow-lg ${
+        className={`p-3 sm:p-4 rounded-full shadow-lg transition-all ${
           isOpen ? 'bg-slate-200 text-slate-600' : 'bg-blue-600 text-white'
         }`}
+        aria-label={isOpen ? 'Close chat' : 'Open chat'}
       >
-        {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
-      </button>.
+        {isOpen ? <X size={20} className="sm:w-6 sm:h-6" /> : <MessageCircle size={20} className="sm:w-6 sm:h-6" />}
+      </button>
     </div>
   )
 }

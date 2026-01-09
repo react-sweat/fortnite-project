@@ -5,12 +5,12 @@ import type { PlayerStats } from '../types/fortnitedto';
 
 function StatBox({ label, value, icon: Icon }: { label: string; value: string | number, icon?: any }) {
   return (
-    <div className="border p-3 text-center">
-      <div className="flex items-center justify-center gap-1 text-sm mb-1">
-        {Icon && <Icon size={14} />}
+    <div className="border p-2 sm:p-3 text-center">
+      <div className="flex items-center justify-center gap-1 text-xs sm:text-sm mb-1">
+        {Icon && <Icon size={12} className="sm:w-3.5 sm:h-3.5" />}
         <span>{label}</span>
       </div>
-      <span className="text-lg font-bold">{value}</span>
+      <span className="text-base sm:text-lg font-bold">{value}</span>
     </div>
   );
 }
@@ -34,29 +34,29 @@ export default function PlayerSearch() {
   const isSearching = loading || (searchQuery && !data && !error);
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-4">
-      <div className="text-center mb-6">
-        <h1 className="text-2xl font-bold mb-2">
+    <div className="w-full max-w-2xl mx-auto p-3 sm:p-4 md:p-6">
+      <div className="text-center mb-4 sm:mb-6">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">
           Fortnite Stats
         </h1>
-        <p className="text-gray-600">Enter username to search</p>
+        <p className="text-gray-600 text-sm sm:text-base">Enter username to search</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex gap-2 mb-8">
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 sm:gap-2 mb-6 sm:mb-8">
         <div className="relative flex-1">
-          <Search className="absolute left-2 top-2 text-gray-400 h-4 w-4" />
+          <Search className="absolute left-2 sm:left-3 top-2.5 sm:top-2 text-gray-400 h-4 w-4" />
           <input
             type="text"
             value={playerName}
             onChange={(e) => setPlayerName(e.target.value)}
             placeholder="Username..."
-            className="w-full pl-8 pr-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+            className="w-full pl-8 sm:pl-10 pr-4 py-2.5 sm:py-2 border rounded focus:outline-none focus:border-blue-500 text-sm sm:text-base"
           />
         </div>
         <button
           type="submit"
           disabled={isSearching || !playerName.trim()}
-          className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50 flex items-center gap-2"
+          className="bg-blue-500 text-white px-4 sm:px-6 py-2.5 sm:py-2 rounded disabled:opacity-50 flex items-center justify-center gap-2 text-sm sm:text-base"
         >
           {isSearching ? <Loader2 className="animate-spin h-4 w-4" /> : 'Search'}
         </button>
@@ -100,7 +100,7 @@ export default function PlayerSearch() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                 <StatBox label="Wins" value={data.stats.all.overall.wins} icon={Crown} />
                 <StatBox label="Win %" value={`${data.stats.all.overall.winRate.toFixed(1)}%`} icon={Target} />
                 <StatBox label="Kills" value={data.stats.all.overall.kills} icon={Sword} />

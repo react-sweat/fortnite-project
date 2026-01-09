@@ -6,7 +6,6 @@ import DataInputForm from './DataInputForm';
 import ChartControls from './ChartControls';
 import { Share2, Download, Copy, RotateCcw } from 'lucide-react';
 
-
 const generateDefaultData = (category: FortniteCategory) => {
   const defaultData: Record<FortniteCategory, ChartDataPoint[]> = {
     performance: [
@@ -48,7 +47,6 @@ const generateDefaultData = (category: FortniteCategory) => {
 
   return defaultData[category] || defaultData.performance;
 };
-
 
 const templates: ChartTemplate[] = [
   {
@@ -209,26 +207,26 @@ const ChartBuilderPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-6 text-gray-900">
+    <div className="min-h-screen bg-gray-50 p-3 sm:p-4 md:p-6 text-gray-900">
       <div className="max-w-7xl mx-auto">
 
-        <header className="mb-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 mb-3">
+        <header className="mb-6 sm:mb-8 text-center">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 mb-2 sm:mb-3 px-2">
             🎮 Fortnite Chart Builder
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 px-4">
             Create custom visualizations of your stats, loadouts, and playstyle
           </p>
         </header>
 
-        <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
 
           <div className="lg:w-5/12">
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
 
-              <div className="flex border-b border-gray-100">
+              <div className="flex border-b border-gray-100 overflow-x-auto">
                 <button
-                  className={`flex-1 py-4 px-6 text-sm font-semibold transition-colors ${activeTab === 'create'
+                  className={`flex-1 py-3 sm:py-4 px-3 sm:px-6 text-xs sm:text-sm font-semibold transition-colors whitespace-nowrap ${activeTab === 'create'
                     ? 'bg-blue-600 text-white'
                     : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
                     }`}
@@ -237,7 +235,7 @@ const ChartBuilderPage: React.FC = () => {
                   📊 Create
                 </button>
                 <button
-                  className={`flex-1 py-4 px-6 text-sm font-semibold transition-colors ${activeTab === 'customize'
+                  className={`flex-1 py-3 sm:py-4 px-3 sm:px-6 text-xs sm:text-sm font-semibold transition-colors whitespace-nowrap ${activeTab === 'customize'
                     ? 'bg-blue-600 text-white'
                     : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
                     }`}
@@ -246,7 +244,7 @@ const ChartBuilderPage: React.FC = () => {
                   🎨 Customize
                 </button>
                 <button
-                  className={`flex-1 py-4 px-6 text-sm font-semibold transition-colors ${activeTab === 'templates'
+                  className={`flex-1 py-3 sm:py-4 px-3 sm:px-6 text-xs sm:text-sm font-semibold transition-colors whitespace-nowrap ${activeTab === 'templates'
                     ? 'bg-blue-600 text-white'
                     : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
                     }`}
@@ -256,8 +254,7 @@ const ChartBuilderPage: React.FC = () => {
                 </button>
               </div>
 
-
-              <div className="p-6">
+              <div className="p-4 sm:p-5 md:p-6">
                 {activeTab === 'create' && (
                   <DataInputForm
                     currentConfig={chartConfig}
@@ -297,40 +294,43 @@ const ChartBuilderPage: React.FC = () => {
               </div>
             </div>
 
-
-            <div className="mt-6 bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-              <div className="grid grid-cols-2 gap-3">
+            <div className="mt-4 sm:mt-6 bg-white rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-gray-100">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Quick Actions</h3>
+              <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 <button
                   onClick={handleCopyConfig}
-                  className="flex items-center justify-center gap-2 py-3 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 transition-colors"
+                  className="flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 transition-colors text-xs sm:text-sm"
                 >
-                  <Copy size={16} />
-                  Copy Config
+                  <Copy size={14} className="sm:w-4 sm:h-4" />
+                  <span className="hidden sm:inline">Copy Config</span>
+                  <span className="sm:hidden">Copy</span>
                 </button>
                 <button
                   onClick={handleResetData}
-                  className="flex items-center justify-center gap-2 py-3 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 transition-colors"
+                  className="flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 transition-colors text-xs sm:text-sm"
                 >
-                  <RotateCcw size={16} />
-                  Reset Data
+                  <RotateCcw size={14} className="sm:w-4 sm:h-4" />
+                  <span className="hidden sm:inline">Reset Data</span>
+                  <span className="sm:hidden">Reset</span>
                 </button>
                 <button
                   onClick={() => handleExport('json')}
-                  className="flex items-center justify-center gap-2 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white transition-colors"
+                  className="flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white transition-colors text-xs sm:text-sm"
                 >
-                  <Download size={16} />
-                  Export JSON
+                  <Download size={14} className="sm:w-4 sm:h-4" />
+                  <span className="hidden sm:inline">Export JSON</span>
+                  <span className="sm:hidden">Export</span>
                 </button>
                 <button
                   onClick={() => {
                     navigator.clipboard.writeText(getShareableLink());
                     alert('Share link copied to clipboard!');
                   }}
-                  className="flex items-center justify-center gap-2 py-3 bg-green-600 hover:bg-green-700 rounded-lg text-white transition-colors"
+                  className="flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-green-600 hover:bg-green-700 rounded-lg text-white transition-colors text-xs sm:text-sm"
                 >
-                  <Share2 size={16} />
-                  Share Link
+                  <Share2 size={14} className="sm:w-4 sm:h-4" />
+                  <span className="hidden sm:inline">Share Link</span>
+                  <span className="sm:hidden">Share</span>
                 </button>
               </div>
             </div>
@@ -342,26 +342,25 @@ const ChartBuilderPage: React.FC = () => {
               config={chartConfig}
             />
 
-
-            <div className="mt-6 bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="text-center p-4 bg-gray-50 rounded-xl">
-                  <div className="text-2xl font-bold text-blue-600">{chartConfig.data.length}</div>
-                  <div className="text-sm text-gray-500">Data Points</div>
+            <div className="mt-4 sm:mt-6 bg-white rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-gray-100">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                <div className="text-center p-3 sm:p-4 bg-gray-50 rounded-xl">
+                  <div className="text-xl sm:text-2xl font-bold text-blue-600">{chartConfig.data.length}</div>
+                  <div className="text-xs sm:text-sm text-gray-500">Data Points</div>
                 </div>
-                <div className="text-center p-4 bg-gray-50 rounded-xl">
-                  <div className="text-2xl font-bold text-green-600">
+                <div className="text-center p-3 sm:p-4 bg-gray-50 rounded-xl">
+                  <div className="text-xl sm:text-2xl font-bold text-green-600">
                     {chartConfig.data.reduce((sum: number, d: ChartDataPoint) => sum + d.value, 0)}
                   </div>
-                  <div className="text-sm text-gray-500">Total Value</div>
+                  <div className="text-xs sm:text-sm text-gray-500">Total Value</div>
                 </div>
-                <div className="text-center p-4 bg-gray-50 rounded-xl">
-                  <div className="text-2xl font-bold text-purple-600 capitalize">{chartConfig.type}</div>
-                  <div className="text-sm text-gray-500">Chart Type</div>
+                <div className="text-center p-3 sm:p-4 bg-gray-50 rounded-xl">
+                  <div className="text-xl sm:text-2xl font-bold text-purple-600 capitalize">{chartConfig.type}</div>
+                  <div className="text-xs sm:text-sm text-gray-500">Chart Type</div>
                 </div>
-                <div className="text-center p-4 bg-gray-50 rounded-xl">
-                  <div className="text-2xl font-bold text-yellow-600">{chartConfig.category}</div>
-                  <div className="text-sm text-gray-500">Category</div>
+                <div className="text-center p-3 sm:p-4 bg-gray-50 rounded-xl">
+                  <div className="text-xl sm:text-2xl font-bold text-yellow-600">{chartConfig.category}</div>
+                  <div className="text-xs sm:text-sm text-gray-500">Category</div>
                 </div>
               </div>
             </div>

@@ -27,16 +27,16 @@ export default function NewsPage() {
     }
 
     return (
-        <div className="container mx-auto px-4">
-            <h1 className="text-4xl font-bold mb-6 text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        <div className="container mx-auto px-2 sm:px-4 md:px-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Fortnite News
             </h1>
 
-            <div className="flex justify-center mb-8">
-                <div className="inline-flex rounded-lg border border-gray-200 bg-white p-1">
+            <div className="flex justify-center mb-6 sm:mb-8">
+                <div className="inline-flex rounded-lg border border-gray-200 bg-white p-1 w-full sm:w-auto">
                     <button
                         onClick={() => setActiveTab('br')}
-                        className={`px-6 py-2 rounded-md font-semibold transition-all ${activeTab === 'br'
+                        className={`flex-1 sm:flex-none px-4 sm:px-6 py-2 rounded-md font-semibold transition-all text-sm sm:text-base ${activeTab === 'br'
                             ? 'bg-blue-600 text-white shadow-md'
                             : 'text-gray-600 hover:text-blue-600'
                             }`}
@@ -45,7 +45,7 @@ export default function NewsPage() {
                     </button>
                     <button
                         onClick={() => setActiveTab('stw')}
-                        className={`px-6 py-2 rounded-md font-semibold transition-all ${activeTab === 'stw'
+                        className={`flex-1 sm:flex-none px-4 sm:px-6 py-2 rounded-md font-semibold transition-all text-sm sm:text-base ${activeTab === 'stw'
                             ? 'bg-blue-600 text-white shadow-md'
                             : 'text-gray-600 hover:text-blue-600'
                             }`}
@@ -71,7 +71,7 @@ export default function NewsPage() {
                         </div>
                     )}
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                         {data.br.motds
                             .filter((motd) => !motd.hidden)
                             .sort((a, b) => b.sortingPriority - a.sortingPriority)
@@ -88,7 +88,7 @@ export default function NewsPage() {
                         Last updated: {new Date(data.stw.date).toLocaleString()}
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                         {data.stw.messages.map((message, index) => (
                             <STWCard key={index} message={message} />
                         ))}
@@ -102,7 +102,7 @@ export default function NewsPage() {
 function NewsCard({ motd }: { motd: NewsMotd }) {
     return (
         <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
-            <div className="relative h-72 bg-gray-200 overflow-hidden">
+            <div className="relative h-48 sm:h-64 md:h-72 bg-gray-200 overflow-hidden">
                 <img
                     src={motd.tileImage || motd.image}
                     alt={motd.title}
@@ -110,12 +110,12 @@ function NewsCard({ motd }: { motd: NewsMotd }) {
                 />
             </div>
 
-            <div className="p-6 flex flex-col flex-grow">
-                <h3 className="font-bold text-2xl mb-3 text-gray-800">{motd.title}</h3>
+            <div className="p-4 sm:p-5 md:p-6 flex flex-col flex-grow">
+                <h3 className="font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 text-gray-800">{motd.title}</h3>
                 {motd.tabTitle !== motd.title && (
-                    <p className="text-base text-blue-600 font-semibold mb-3">{motd.tabTitle}</p>
+                    <p className="text-sm sm:text-base text-blue-600 font-semibold mb-2 sm:mb-3">{motd.tabTitle}</p>
                 )}
-                <p className="text-gray-600 text-base leading-relaxed flex-grow">{motd.body}</p>
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed flex-grow">{motd.body}</p>
             </div>
         </div>
     );
@@ -124,7 +124,7 @@ function NewsCard({ motd }: { motd: NewsMotd }) {
 function STWCard({ message }: { message: STWMessage }) {
     return (
         <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <div className="relative h-80 bg-gray-200 overflow-hidden">
+            <div className="relative h-48 sm:h-64 md:h-80 bg-gray-200 overflow-hidden">
                 <img
                     src={message.image}
                     alt={message.title}
@@ -132,9 +132,9 @@ function STWCard({ message }: { message: STWMessage }) {
                 />
             </div>
 
-            <div className="p-8">
-                <h3 className="font-bold text-3xl mb-4 text-gray-800">{message.title}</h3>
-                <p className="text-gray-600 text-lg leading-relaxed">{message.body}</p>
+            <div className="p-4 sm:p-6 md:p-8">
+                <h3 className="font-bold text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-4 text-gray-800">{message.title}</h3>
+                <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">{message.body}</p>
             </div>
         </div>
     );

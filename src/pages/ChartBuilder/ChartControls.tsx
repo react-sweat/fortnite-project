@@ -16,21 +16,19 @@ const ChartControls: React.FC<Props> = ({ config, onUpdate }) => {
     onUpdate({ ...config, [key]: color });
   };
 
-
-
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-          <Zap size={20} />
+        <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4 flex items-center gap-2">
+          <Zap size={18} className="sm:w-5 sm:h-5" />
           Display Options
         </h3>
-        <div className="space-y-4">
-          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-100">
-            <div className="flex items-center gap-3">
-              <ToggleLeft className="text-gray-500" />
+        <div className="space-y-3 sm:space-y-4">
+          <div className="flex items-center justify-between p-2 sm:p-3 bg-gray-50 rounded-lg border border-gray-100">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <ToggleLeft className="text-gray-500 w-4 h-4 sm:w-5 sm:h-5" />
               <div>
-                <p className="text-gray-900 font-medium">Show Legend</p>
+                <p className="text-gray-900 font-medium text-sm sm:text-base">Show Legend</p>
                 <p className="text-xs text-gray-500">Display chart legend</p>
               </div>
             </div>
@@ -86,43 +84,41 @@ const ChartControls: React.FC<Props> = ({ config, onUpdate }) => {
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-          <Palette size={20} />
+        <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4 flex items-center gap-2">
+          <Palette size={18} className="sm:w-5 sm:h-5" />
           Color Scheme
         </h3>
 
-
-
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
               Primary Color
             </label>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <input
                 type="color"
                 value={config.primaryColor}
                 onChange={(e) => handleColorChange('primaryColor', e.target.value)}
-                className="w-12 h-12 cursor-pointer rounded-lg border border-gray-300 p-1"
+                className="w-10 h-10 sm:w-12 sm:h-12 cursor-pointer rounded-lg border border-gray-300 p-1"
               />
-              <div className="flex-1 px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 text-gray-900">
+              <div className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-gray-50 rounded-lg border border-gray-200 text-gray-900 text-xs sm:text-sm">
                 {config.primaryColor}
               </div>
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
               Background Color
             </label>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <input
                 type="color"
                 value={config.backgroundColor}
                 onChange={(e) => handleColorChange('backgroundColor', e.target.value)}
-                className="w-12 h-12 cursor-pointer rounded-lg border border-gray-300 p-1"
+                className="w-10 h-10 sm:w-12 sm:h-12 cursor-pointer rounded-lg border border-gray-300 p-1"
               />
-              <div className="flex-1 px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 text-gray-900">
+              <div className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-gray-50 rounded-lg border border-gray-200 text-gray-900 text-xs sm:text-sm">
                 {config.backgroundColor}
               </div>
             </div>
@@ -131,22 +127,22 @@ const ChartControls: React.FC<Props> = ({ config, onUpdate }) => {
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-          <Type size={20} />
+        <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4 flex items-center gap-2">
+          <Type size={18} className="sm:w-5 sm:h-5" />
           Text Settings
         </h3>
-        <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
-          <p className="text-sm text-gray-500 mb-3">Preview</p>
+        <div className="p-3 sm:p-4 bg-gray-50 rounded-lg border border-gray-100">
+          <p className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">Preview</p>
           <div
-            className="p-4 rounded-lg text-center"
+            className="p-3 sm:p-4 rounded-lg text-center"
             style={{
               backgroundColor: config.backgroundColor,
               color: config.textColor,
               border: `2px solid ${config.primaryColor}20`
             }}
           >
-            <p className="text-lg font-bold">{config.title}</p>
-            <p className="text-sm opacity-80">Fortnite Chart Visualization</p>
+            <p className="text-base sm:text-lg font-bold">{config.title}</p>
+            <p className="text-xs sm:text-sm opacity-80">Fortnite Chart Visualization</p>
           </div>
         </div>
       </div>

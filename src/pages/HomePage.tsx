@@ -4,16 +4,16 @@ import logo from "../assets/logo.png";
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col items-center text-center p-4">
-      <div className="mb-6">
+    <div className="flex flex-col items-center text-center p-2 sm:p-4 md:p-6">
+      <div className="mb-4 md:mb-6">
 
-        <img src={logo} alt="Fortnite Platform" className="mx-auto block h-12 w-auto mb-2" />
-        <p className="text-gray-600 max-w-md mb-8">
+        <img src={logo} alt="Fortnite Platform" className="mx-auto block h-10 sm:h-12 md:h-14 w-auto mb-2 md:mb-4" />
+        <p className="text-gray-600 max-w-md mb-6 md:mb-8 text-sm sm:text-base px-4">
           Check Fortnite player stats, progress, Battle Pass levels and more.
         </p>
       </div>
 
-      <div className="flex flex-col gap-4 w-full max-w-md">
+      <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-md px-4">
         <Link
           to="/player-search"
           className="bg-blue-500 text-white px-4 py-3 rounded font-bold flex items-center justify-center gap-2"
@@ -37,9 +37,6 @@ export default function HomePage() {
           <Map className="w-4 h-4" />
           View Map & Distance Tool
         </Link>
-
-
-
 
         <Link
           to="/news"

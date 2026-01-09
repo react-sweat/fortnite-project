@@ -135,27 +135,27 @@ const DataInputForm: React.FC<Props> = ({ currentConfig, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Chart Basics</h3>
+        <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Chart Basics</h3>
 
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
               Chart Title
             </label>
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm sm:text-base"
               placeholder="Enter chart title"
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                 Chart Type
               </label>
               <div className="grid grid-cols-2 gap-2">
@@ -164,26 +164,26 @@ const DataInputForm: React.FC<Props> = ({ currentConfig, onSubmit }) => {
                     key={type.value}
                     type="button"
                     onClick={() => setChartType(type.value as ChartType)}
-                    className={`flex items-center gap-2 p-3 rounded-lg border transition-all ${chartType === type.value
+                    className={`flex items-center gap-1 sm:gap-2 p-2 sm:p-3 rounded-lg border transition-all ${chartType === type.value
                       ? 'border-blue-500 bg-blue-50 text-blue-700'
                       : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50'
                       }`}
                   >
-                    <span className="text-lg">{type.icon}</span>
-                    <span className="text-sm">{type.label}</span>
+                    <span className="text-base sm:text-lg">{type.icon}</span>
+                    <span className="text-xs sm:text-sm">{type.label}</span>
                   </button>
                 ))}
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                 Category
               </label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value as FortniteCategory)}
-                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm sm:text-base"
               >
                 {categories.map(cat => (
                   <option key={cat.value} value={cat.value}>
@@ -197,91 +197,93 @@ const DataInputForm: React.FC<Props> = ({ currentConfig, onSubmit }) => {
       </div>
 
       <div>
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">Data Points</h3>
-          <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3 sm:mb-4 gap-2 sm:gap-0">
+          <h3 className="text-base sm:text-lg font-semibold text-gray-900">Data Points</h3>
+          <div className="flex gap-2 w-full sm:w-auto">
             <button
               type="button"
               onClick={handleLoadPreset}
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:opacity-90 transition-opacity"
+              className="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:opacity-90 transition-opacity text-xs sm:text-sm w-full sm:w-auto"
             >
-              <Zap size={16} />
+              <Zap size={14} className="sm:w-4 sm:h-4" />
               Load Preset
             </button>
           </div>
         </div>
 
-        <div className="mb-6 p-4 bg-blue-50 rounded-xl border border-blue-100">
-          <label className="block text-sm font-medium text-blue-900 mb-2">
+        <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-blue-50 rounded-xl border border-blue-100">
+          <label className="block text-xs sm:text-sm font-medium text-blue-900 mb-1 sm:mb-2">
             Import from Fortnite Player
           </label>
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <input
               type="text"
               value={fortniteUsername}
               onChange={(e) => setFortniteUsername(e.target.value)}
               placeholder="Enter Epic Username..."
-              className="flex-1 px-4 py-2 bg-white border border-blue-200 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none"
+              className="flex-1 px-3 sm:px-4 py-2 bg-white border border-blue-200 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none text-sm sm:text-base"
               onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleSearchStats())}
             />
             <button
               type="button"
               onClick={handleSearchStats}
               disabled={statsLoading}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
+              className="px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 flex items-center justify-center gap-2 text-sm"
             >
-              {statsLoading ? <Loader2 size={16} className="animate-spin" /> : <Search size={16} />}
+              {statsLoading ? <Loader2 size={14} className="sm:w-4 sm:h-4 animate-spin" /> : <Search size={14} className="sm:w-4 sm:h-4" />}
               Search
             </button>
           </div>
-          {statsError && <p className="text-red-500 text-sm mt-2">{statsError}</p>}
+          {statsError && <p className="text-red-500 text-xs sm:text-sm mt-2">{statsError}</p>}
         </div>
 
-        <div className="space-y-3 mb-4">
+        <div className="space-y-2 sm:space-y-3 mb-3 sm:mb-4">
           {dataPoints.map((point, index) => (
             <div
               key={index}
-              className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 rounded-lg border border-gray-200"
             >
               <input
                 type="text"
                 value={point.label}
                 onChange={(e) => handleUpdateDataPoint(index, 'label', e.target.value)}
-                className="flex-1 px-3 py-2 bg-white border border-gray-300 rounded text-gray-900 focus:border-blue-500 outline-none"
+                className="flex-1 px-2 sm:px-3 py-1.5 sm:py-2 bg-white border border-gray-300 rounded text-gray-900 focus:border-blue-500 outline-none text-sm sm:text-base"
                 placeholder="Stat name"
               />
 
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-500 min-w-[40px]">{typeof point.value === 'number' ? point.value.toFixed(1) : point.value}</span>
+                <span className="text-xs sm:text-sm text-gray-500 min-w-[35px] sm:min-w-[40px]">{typeof point.value === 'number' ? point.value.toFixed(1) : point.value}</span>
                 <input
                   type="range"
                   min="0"
                   max="100"
                   value={point.value}
                   onChange={(e) => handleUpdateDataPoint(index, 'value', parseInt(e.target.value))}
-                  className="w-24"
+                  className="flex-1 sm:w-24"
                 />
               </div>
 
-              <div className="relative flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 cursor-pointer hover:border-blue-500 transition-colors shadow-sm" style={{ backgroundColor: point.color }}>
-                <input
-                  type="color"
-                  value={point.color}
-                  onChange={(e) => handleUpdateDataPoint(index, 'color', e.target.value)}
-                  className="absolute inset-0 opacity-0 w-full h-full cursor-pointer z-10"
-                  title="Choose color"
-                />
-                <Palette size={20} className={`text-white drop-shadow-md`} />
-              </div>
+              <div className="flex items-center gap-2">
+                <div className="relative flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg border border-gray-200 cursor-pointer hover:border-blue-500 transition-colors shadow-sm" style={{ backgroundColor: point.color }}>
+                  <input
+                    type="color"
+                    value={point.color}
+                    onChange={(e) => handleUpdateDataPoint(index, 'color', e.target.value)}
+                    className="absolute inset-0 opacity-0 w-full h-full cursor-pointer z-10"
+                    title="Choose color"
+                  />
+                  <Palette size={16} className={`text-white drop-shadow-md sm:w-5 sm:h-5`} />
+                </div>
 
-              <button
-                type="button"
-                onClick={() => handleRemoveDataPoint(index)}
-                disabled={dataPoints.length <= 1}
-                className="p-2 text-gray-400 hover:text-red-500 disabled:opacity-30"
-              >
-                <Trash2 size={16} />
-              </button>
+                <button
+                  type="button"
+                  onClick={() => handleRemoveDataPoint(index)}
+                  disabled={dataPoints.length <= 1}
+                  className="p-1.5 sm:p-2 text-gray-400 hover:text-red-500 disabled:opacity-30"
+                >
+                  <Trash2 size={14} className="sm:w-4 sm:h-4" />
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -289,16 +291,16 @@ const DataInputForm: React.FC<Props> = ({ currentConfig, onSubmit }) => {
         <button
           type="button"
           onClick={handleAddDataPoint}
-          className="flex items-center justify-center gap-2 w-full py-3 border-2 border-dashed border-gray-300 text-gray-500 hover:text-blue-600 hover:border-blue-500 hover:bg-blue-50 rounded-lg transition-all"
+          className="flex items-center justify-center gap-2 w-full py-2.5 sm:py-3 border-2 border-dashed border-gray-300 text-gray-500 hover:text-blue-600 hover:border-blue-500 hover:bg-blue-50 rounded-lg transition-all text-sm sm:text-base"
         >
-          <Plus size={16} />
+          <Plus size={14} className="sm:w-4 sm:h-4" />
           Add Data Point
         </button>
       </div>
 
       <button
         type="submit"
-        className="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
+        className="w-full py-2.5 sm:py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm sm:text-base"
       >
         🚀 Generate Chart
       </button>
