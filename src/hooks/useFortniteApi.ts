@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_FORTNITE_API_BASE_URL || 'https://fortnite-api.com';
-const API_KEY = import.meta.env.VITE_FORTNITE_API_KEY;
+const BASE_URL = 'http://localhost:3001/api/fortnite';
+
+
 
 const cache = new Map();
 const errorCache = new Map();
@@ -71,17 +72,17 @@ export function useFortniteApi<T>(
       try {
         const response = await axios.get(`${BASE_URL}${endpoint}`, {
           params,
-          headers: API_KEY ? { Authorization: API_KEY } : {},
+
           signal: controller.signal,
         });
 
         const result = response.data.data ?? response.data;
-        
+
         if (mountedRef.current) {
           setData(result);
           setError(null);
         }
-        
+
         cache.set(cacheKey, result);
         setTimeout(() => cache.delete(cacheKey), 120000);
         errorCache.delete(cacheKey);

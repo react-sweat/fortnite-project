@@ -41,14 +41,10 @@ STYLE GUIDELINES:
 
 const fetchPlayerStats = async (username: string) => {
   try {
-    const apiKey = import.meta.env.VITE_FORTNITE_API_KEY
-    const baseUrl =
-      import.meta.env.VITE_FORTNITE_API_BASE_URL ||
-      'https://fortnite-api.com'
+    const baseUrl = 'http://localhost:3001/api/fortnite';
 
     const response = await axios.get(`${baseUrl}/v2/stats/br/v2`, {
       params: { name: username },
-      headers: apiKey ? { Authorization: apiKey } : {},
     })
 
     return response.data
@@ -80,23 +76,12 @@ export function useAIChat(): UseAIChatReturn {
     setError(null)
 
     try {
-      const apiKey = import.meta.env.VITE_AI_API_KEY
-      let baseUrl = import.meta.env.VITE_AI_BASE_URL
+      const backendUrl = 'http://localhost:3001/api/chat';
 
-      if (!apiKey) throw new Error('AI configuration is missing.')
-      if (!baseUrl) throw new Error('Base URL is missing')
-
-      if (baseUrl.endsWith('/')) baseUrl = baseUrl.slice(0, -1)
-      if (baseUrl.includes('openrouter.ai') && !baseUrl.includes('/api/v1')) {
-        baseUrl = `${baseUrl}/api/v1`
-      }
-      if (!baseUrl.endsWith('/chat/completions')) {
-        baseUrl = `${baseUrl}/chat/completions`
-      }
 
       const callAI = async (msgs: Message[]) =>
         axios.post(
-          baseUrl!,
+          backendUrl,
           {
             model: 'x-ai/grok-4.1-fast',
             messages: msgs,
@@ -105,7 +90,6 @@ export function useAIChat(): UseAIChatReturn {
           {
             headers: {
               'Content-Type': 'application/json',
-              Authorization: `Bearer ${apiKey}`,
               'HTTP-Referer': window.location.origin,
               'X-Title': 'Fortnite Platform',
             },
